@@ -2,11 +2,10 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  return (
+  return(
     <div className="App">
       <p>
-        Edit Hiiiiiiiiiiiiiiiiii <code>src/App.js</code>
-           and save to reload.
+        Edit and save to reload.
       </p>
       <a
         className="App-link"
