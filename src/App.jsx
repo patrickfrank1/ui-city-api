@@ -2,6 +2,7 @@
 import React from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
+import UserConsole from './UserConsole';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends React.Component {
       <div>
         <div className="menu">
           <SearchBar handleFailure={this.handleFailure} />
+          <UserConsole handleFailure={this.handleFailure} />
         </div>
         <div className="infobar">
           {this.state.failureMessage === null ? '' : this.state.failureMessage}
