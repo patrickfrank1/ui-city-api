@@ -1,22 +1,32 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './App.css';
+import SearchBar from './SearchBar';
 
-function App() {
-  return(
-    <div className="App">
-      <p>
-        Edit and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      failureMessage: ''
+    };
+  }
+  handleFailure = (txt) => {
+    this.setState({failureMessage: txt});
+    setTimeout(()=>{this.setState({failureMessage:''})},3000)
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="menu">
+          <SearchBar handleFailure={this.handleFailure} />
+        </div>
+        <div className="infobar">
+          {this.state.failureMessage === null ? '' : this.state.failureMessage}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
