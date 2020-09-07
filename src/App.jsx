@@ -8,23 +8,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      failureMessage: ''
+      message: '',
+      msgType: ''
     };
   }
-  handleFailure = (txt) => {
-    this.setState({failureMessage: txt});
-    setTimeout(()=>{this.setState({failureMessage:''})},3000)
+  handleMessage = (txt, type = 'error') => {
+    this.setState({message: txt, msgType: type});
+    setTimeout(()=>{this.setState({message:''})},3000)
   }
 
   render() {
     return (
       <div>
         <div className="menu">
-          <SearchBar handleFailure={this.handleFailure} />
-          <UserConsole handleFailure={this.handleFailure} />
+          <SearchBar handleMessage={this.handleMessage} />
+          <UserConsole handleMessage={this.handleMessage} />
         </div>
-        <div className="infobar">
-          {this.state.failureMessage === null ? '' : this.state.failureMessage}
+        <div className={this.state.msgType}>
+          {this.state.message === null ? '' : this.state.message}
         </div>
       </div>
     );

@@ -18,24 +18,28 @@ class UserConsole extends React.Component {
   }
 
   handleSignup = () => {
-    this.props.handleFailure("UserConsole not implemented yet.");
+    this.props.handleMessage("UserConsole not implemented yet.", "success");
     this.setState({username: '', password: ''});
   }
 
   handleLogin = () => {
-    this.props.handleFailure("UserConsole not implemented yet.");
+    this.props.handleMessage("UserConsole not implemented yet.", "warn");
+    this.setState({username: '', password: ''});
+  }
+
+  handleDelete = () => {
+    this.props.handleMessage("UserConsole not implemented yet.");
     this.setState({username: '', password: ''});
   }
 
   render = () => {
     return (
       <div>
-        <label>
-          <button onClick={this.handleSignup}>Sign Up</button>
-          <button onClick={this.handleLogin}>Login</button>
-        </label>
+        <button onClick={this.handleSignup}>Sign Up</button>
+        <button onClick={this.handleLogin}>Login</button>
         <input type='text' value={this.state.username} placeholder='username' onChange={this.handleUserChange}/>
         <input type='password' value={this.state.password} placeholder='password' onChange={this.handlePasswordChange}/>
+        <button onClick={this.handleDelete}>Delete Account</button>
       </div>
     );
   }
