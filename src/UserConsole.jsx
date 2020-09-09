@@ -18,7 +18,39 @@ class UserConsole extends React.Component {
   }
 
   handleSignup = () => {
-    this.props.handleMessage("UserConsole not implemented yet.", "success");
+    if (this.state.username === '') {
+      this.props.handleMessage("Please specify a username.", "error");
+      
+    }
+    if (this.state.password === '') {
+      this.props.handleMessage("Please specify a password.", "error");
+    }
+    const payload = {
+      'username': this.state.username,
+      'password': this.state.password
+    };
+    fetch('https://city-search-node-api.herokuapp.com/register',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      if (res.status >= '400') {
+        res.text().then(resText => {
+          this.props.handleMessage(resText, "error");
+        })
+      } else {
+        res.text().then(resText => {
+          this.props.handleMessage(resText, "success");
+        })
+      }
+    }).catch(err => {
+      this.props.handleMessage("Internal server error.", "error");
+      console.log(err);
+    });
+
     this.setState({username: '', password: ''});
   }
 
