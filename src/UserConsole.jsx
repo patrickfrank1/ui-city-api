@@ -34,6 +34,7 @@ class UserConsole extends React.Component {
     fetch('https://city-search-node-api.herokuapp.com/register',{
       method: 'POST',
       headers: {
+        'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -67,31 +68,31 @@ class UserConsole extends React.Component {
       'username': this.state.username,
       'password': this.state.password
     };
-    axios.post('https://city-search-node-api.herokuapp.com/login',payload)
-    .then(res => {
-      console.log(res);
-    });
-    // fetch('https://city-search-node-api.herokuapp.com/login',{
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(payload)
-    // }).then(res => {
-    //   if (res.status >= '400') {
-    //     res.text().then(resText => {
-    //       this.props.handleMessage(resText, "error");
-    //     })
-    //   } else {
-    //     res.text().then(resText => {
-    //       this.props.handleMessage("You are logged in.", "success");
-    //     })
-    //   }
-    // }).catch(err => {
-    //   this.props.handleMessage("Internal server error.", "error");
-    //   console.log(err);
+    // axios.post('https://city-search-node-api.herokuapp.com/login',payload)
+    // .then(res => {
+    //   console.log(res);
     // });
+    fetch('https://city-search-node-api.herokuapp.com/login',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      if (res.status >= '400') {
+        res.text().then(resText => {
+          this.props.handleMessage(resText, "error");
+        })
+      } else {
+        res.text().then(resText => {
+          this.props.handleMessage("You are logged in.", "success");
+        })
+      }
+    }).catch(err => {
+      this.props.handleMessage("Internal server error.", "error");
+      console.log(err);
+    });
 
     this.setState({username: '', password: ''});
   }
