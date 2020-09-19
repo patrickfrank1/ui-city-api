@@ -34,7 +34,6 @@ class UserConsole extends React.Component {
     fetch('https://city-search-node-api.herokuapp.com/register',{
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -74,6 +73,7 @@ class UserConsole extends React.Component {
     // });
     fetch('https://city-search-node-api.herokuapp.com/login',{
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
