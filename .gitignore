@@ -1,5 +1,6 @@
 # ignore dist and documentation folders for now
 dist
+build
 documentation
 
 # Logs
