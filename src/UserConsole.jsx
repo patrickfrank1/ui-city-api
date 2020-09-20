@@ -74,7 +74,6 @@ class UserConsole extends React.Component {
       },
       body: JSON.stringify(payload)
     }).then(res => {
-      console.log(res.status);
       if (res.status >= 400) {
         res.text().then(resText => {
           this.props.handleMessage(resText, "error");
@@ -83,7 +82,6 @@ class UserConsole extends React.Component {
         res.text().then(token => {
           this.setState({cookie: 'token=' + token});
           this.props.setCookie('token=' + token);
-          console.log(this.state.cookie);
           this.props.handleMessage("You sucessfully logged in.", "success");
         });
       }
