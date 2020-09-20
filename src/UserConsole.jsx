@@ -69,7 +69,6 @@ class UserConsole extends React.Component {
     };
     fetch('https://city-search-node-api.herokuapp.com/login',{
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -83,6 +82,7 @@ class UserConsole extends React.Component {
       } else {
         res.text().then(token => {
           this.setState({cookie: cookie+token});
+          console.log(this.state.cookie);
           this.props.handleMessage("You sucessfully logged in.", "success");
         });
       }
