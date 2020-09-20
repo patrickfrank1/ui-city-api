@@ -13,6 +13,33 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit = () => {
+    if (this.state.input === '') {
+      this.props.handleMessage("Please search for something, anything.", "error");
+    }
+    fetch('https://city-search-node-api.herokuapp.com/suggestions?q='+this.state.input,{
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'accessToken': cookie
+      }
+    }).then(res => {
+      if (parseInt(res.status) >= 400) {
+        res.text().then(resText => {
+          console.log(resText, "error");
+        });
+      } else {
+        res.json().then(data => {
+            console.log(data);
+        });
+      }
+    }).catch(err => {
+      console.log("Internal server error.", "error");
+      console.log(err);
+    });
+
+
     this.props.handleMessage("Search not implemented yet.", "error");
     this.setState({input: ''});
   }

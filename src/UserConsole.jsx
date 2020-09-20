@@ -22,7 +22,6 @@ class UserConsole extends React.Component {
   handleSignup = () => {
     if (this.state.username === '') {
       this.props.handleMessage("Please specify a username.", "error");
-      
     }
     if (this.state.password === '') {
       this.props.handleMessage("Please specify a password.", "error");
@@ -83,6 +82,7 @@ class UserConsole extends React.Component {
       } else {
         res.text().then(token => {
           this.setState({cookie: 'token=' + token});
+          this.props.setCookie('token=' + token);
           console.log(this.state.cookie);
           this.props.handleMessage("You sucessfully logged in.", "success");
         });

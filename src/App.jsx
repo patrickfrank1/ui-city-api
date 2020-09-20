@@ -9,12 +9,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       message: '',
-      msgType: ''
+      msgType: '',
+      cookie: ''
     };
   }
   handleMessage = (txt, type = 'error') => {
     this.setState({message: txt, msgType: type});
     setTimeout(()=>{this.setState({message:''})},3000)
+  }
+  
+  setCookie = (token) => {
+    this.setState({cookie: token});
   }
 
   render() {
@@ -22,7 +27,7 @@ class App extends React.Component {
       <div>
         <div className="menu">
           <SearchBar handleMessage={this.handleMessage} />
-          <UserConsole handleMessage={this.handleMessage} />
+          <UserConsole handleMessage={this.handleMessage} setCookie={this.setCookie} />
         </div>
         <div className={this.state.msgType}>
           {this.state.message === null ? '' : this.state.message}
