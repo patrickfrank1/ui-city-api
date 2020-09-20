@@ -31,7 +31,6 @@ class SearchBar extends React.Component {
       } else {
         res.json().then(data => {
             this.props.setData(data.suggestions);
-            console.log(data);
         });
       }
     }).catch(err => {
