@@ -82,7 +82,7 @@ class UserConsole extends React.Component {
         });
       } else {
         res.text().then(token => {
-          this.setState({cookie: cookie+token});
+          this.setState({cookie: this.state.cookie + token});
           console.log(this.state.cookie);
           this.props.handleMessage("You sucessfully logged in.", "success");
         });
