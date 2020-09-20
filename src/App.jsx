@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <div>
         <div className="menu">
-          <SearchBar handleMessage={this.handleMessage} />
+          <SearchBar handleMessage={this.handleMessage} accessToken={this.state.cookie} />
           <UserConsole handleMessage={this.handleMessage} setCookie={this.setCookie} />
         </div>
         <div className={this.state.msgType}>
