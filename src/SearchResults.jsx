@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import React from 'react';
+import './SearchResults.css';
 
 class TableEntry extends React.PureComponent {
   render() {
@@ -23,12 +24,12 @@ class SearchResults extends React.PureComponent {
     ));
     return (
       <table>
-        <th>
-          <td>City</td>
-          <td>Score</td>
-          <td>Latitude</td>
-          <td>Longitude</td>
-        </th>
+        <tr>
+          <th>City</th>
+          <th>Score</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
         {rows}
       </table>
     );

@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         <button onClick={this.handleSubmit}>&#128270;</button> {/*🔎*/}
-        <input type='text' value={this.state.input} placeholder='search query' onChange={this.handleChange}/>
+        <input type='text' value={this.state.input} placeholder='search query' onChange={this.handleChange} />
       </div>
       
     );
