@@ -2,11 +2,9 @@ import React from 'react';
 
 class SearchResults extends React.PureComponent {
   render() {
-    const rows = [...Array(10)].map((num) => (
-      <tr key={num}>
-        <td>col1</td>
-        <td>col2</td>
-        <td>col3</td>
+    const rows = this.props.results.map((el, i) => (
+      <tr key={i}>
+        <td>{JSON.stringify(el)}</td>
       </tr>
     ));
     return (

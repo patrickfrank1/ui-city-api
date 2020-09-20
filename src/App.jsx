@@ -12,7 +12,7 @@ class App extends React.Component {
       message: '',
       msgType: '',
       cookie: '',
-      data: null
+      results: [1,2,3,4,5]
     };
   }
   handleMessage = (txt, type = 'error') => {
@@ -20,21 +20,21 @@ class App extends React.Component {
     setTimeout(()=>{this.setState({message:''})},3000)
   }
   
-  setCookie = (token) => {
-    this.setState({cookie: token});
+  setParentState = (prop, token) => {
+    return (token) => this.setState({[prop]: token});
   }
 
   render() {
     return (
       <div>
         <div className="menu">
-          <SearchBar handleMessage={this.handleMessage} accessToken={this.state.cookie} />
-          <UserConsole handleMessage={this.handleMessage} setCookie={this.setCookie} />
+          <SearchBar handleMessage={this.handleMessage} accessToken={this.state.cookie} setData={this.setParentState('results')}/>
+          <UserConsole handleMessage={this.handleMessage} setCookie={this.setParentState('cookie')} />
         </div>
         <div className={this.state.msgType}>
           {this.state.message === null ? '' : this.state.message}
         </div>
-        <SearchResults data={this.state.data} />
+        <SearchResults results={this.state.results} />
       </div>
     );
   }
