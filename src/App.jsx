@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
 import UserConsole from './UserConsole';
+import SearchResults from './SearchResults';
 
 class App extends React.Component {
   constructor(props) {
