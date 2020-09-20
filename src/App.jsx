@@ -10,7 +10,8 @@ class App extends React.Component {
     this.state = {
       message: '',
       msgType: '',
-      cookie: ''
+      cookie: '',
+      data: null
     };
   }
   handleMessage = (txt, type = 'error') => {
@@ -32,6 +33,7 @@ class App extends React.Component {
         <div className={this.state.msgType}>
           {this.state.message === null ? '' : this.state.message}
         </div>
+        <SearchResults data={this.state.data} />
       </div>
     );
   }
