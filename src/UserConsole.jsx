@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 
 class UserConsole extends React.Component {
@@ -7,7 +6,8 @@ class UserConsole extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      cookie:'token='
     };
   }
 
@@ -39,7 +39,7 @@ class UserConsole extends React.Component {
       },
       body: JSON.stringify(payload)
     }).then(res => {
-      if (res.status >= '400') {
+      if (res.status >= 400) {
         res.text().then(resText => {
           this.props.handleMessage(resText, "error");
         })
@@ -67,50 +67,52 @@ class UserConsole extends React.Component {
       'username': this.state.username,
       'password': this.state.password
     };
-    // axios.post('https://city-search-node-api.herokuapp.com/login',payload)
-    // .then(res => {
-    //   console.log(res);
-    // });
     fetch('https://city-search-node-api.herokuapp.com/login',{
       method: 'POST',
-      mode: 'no-cors',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     }).then(res => {
-      if (res.status >= '400') {
+      if (res.status >= 400) {
         res.text().then(resText => {
           this.props.handleMessage(resText, "error");
-        })
+        });
       } else {
-        res.text().then(resText => {
-          this.props.handleMessage("You are logged in.", "success");
-        })
+        res.text().then(token => {
+          this.setState({cookie: cookie+token});
+          this.props.handleMessage("You sucessfully logged in.", "success");
+        });
       }
     }).catch(err => {
       this.props.handleMessage("Internal server error.", "error");
-      console.log(err);
     });
 
     this.setState({username: '', password: ''});
   }
 
   handleDelete = () => {
-    axios.delete('https://city-search-node-api.herokuapp.com/deregister',{
-      withCredentials: true,
-      crossDomain: true
-    }).then(res =>{
-      if(res.status === '200') {
-        res.text().then(resText => {
-          this.props.handleMessage(resText, "success");
-        });
-      } else {
+    fetch('https://city-search-node-api.herokuapp.com/deregister',{
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'accesstoken': this.state.cookie
+      },
+    }).then(res => {
+      if (res.status >= 400) {
         res.text().then(resText => {
           this.props.handleMessage(resText, "error");
         });
+      } else {
+        res.text().then(resText => {
+          this.props.handleMessage(resText, "success");
+        });
       }
+    }).catch(err => {
+      this.props.handleMessage("Internal server error.", "error");
     });
   }
 
