@@ -75,6 +75,7 @@ class UserConsole extends React.Component {
       },
       body: JSON.stringify(payload)
     }).then(res => {
+      console.log(res.status);
       if (res.status >= 400) {
         res.text().then(resText => {
           this.props.handleMessage(resText, "error");
