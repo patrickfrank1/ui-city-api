@@ -2,7 +2,6 @@ table {
   width: 60%;
   padding: 10px 50px 100px 50px;
   overflow-y: scroll;
-  border: 5px solid red;
 }
 
 th, td {
@@ -12,4 +11,6 @@ th, td {
   width: 100%;
 }
 
-tr:hover {background-color: #f5f5f5;}
+tr:hover {
+  background-color: #f5f5f5;
+}
