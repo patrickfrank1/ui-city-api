@@ -1,4 +1,5 @@
 import React from 'react';
+import './SearchBar.css';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -58,9 +59,9 @@ class SearchBar extends React.Component {
 
   render = () => {
     return (
-      <div>
+      <div className="bar">
         <button onClick={this.handleSubmit}>&#128270;</button> {/*🔎*/}
-        <input type='text' value={this.state.input} placeholder='search query' onChange={this.handleChange('input')} />
+        <input type='text' className="inputQuery" value={this.state.input} placeholder='search query' onChange={this.handleChange('input')} />
         <input type='number' min='-90' max='90' value={this.state.latitude} placeholder='latitude' onChange={this.handleChange('latitude')} />
         <input type='number' min='-180' max='180' value={this.state.longitude} placeholder='longitude' onChange={this.handleChange('longitude')} />
       </div>

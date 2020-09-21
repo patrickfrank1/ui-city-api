@@ -27,9 +27,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="menu">
+        <div className="loginMenu">
+          <div className='userConsole'>
+            <UserConsole handleMessage={this.handleMessage} setCookie={this.setParentState('cookie')} />
+          </div>
+          <span className="title">Search for a city in North America</span>
+          <span className="disclaimer">This small SPA consumes the REST API at <a href="https://github.com/patrickfrank1/coding-challenge-backend-c">https://github.com/patrickfrank1/coding-challenge-backend-c</a></span>
+        </div>
+        <div className="searchMenu">
           <SearchBar handleMessage={this.handleMessage} accessToken={this.state.cookie} setData={this.setParentState('results')}/>
-          <UserConsole handleMessage={this.handleMessage} setCookie={this.setParentState('cookie')} />
         </div>
         <div className={this.state.msgType}>
           {this.state.message === null ? '' : this.state.message}

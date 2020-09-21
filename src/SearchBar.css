@@ -1,0 +1,17 @@
+.bar button {
+  padding: 10px 15px;
+}
+
+.bar input {
+  padding: 13px 15px;
+}
+
+
+input[type=number] {
+  width: 100px;
+}
+
+.inputQuery {
+  width: 50%;
+}
+

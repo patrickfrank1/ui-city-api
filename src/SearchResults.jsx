@@ -24,13 +24,15 @@ class SearchResults extends React.PureComponent {
     ));
     return (
       <table>
-        <tr>
-          <th>City</th>
-          <th>Score</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-        {rows}
+        <tbody>
+          <tr>
+            <th>City</th>
+            <th>Score</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+          {rows}
+        </tbody>
       </table>
     );
   }
