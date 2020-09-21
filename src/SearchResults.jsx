@@ -19,6 +19,9 @@ class TableEntry extends React.PureComponent {
 
 class SearchResults extends React.PureComponent {
   render() {
+    if (this.props.results === null) {
+      return null;
+    }
     const rows = this.props.results.map((el, i) => (
       <TableEntry key={i} name={el.name} score={el.score} latitude={el.latitude} longitude={el.longitude} />
     ));
