@@ -41,16 +41,15 @@ class SearchBar extends React.Component {
     }).then(res => {
       if (res.status >= 400) {
         res.text().then(resText => {
-          console.log(resText, "error");
+          this.props.handleMessage(resText, "error");
         });
       } else {
         res.json().then(data => {
             this.props.setData(data.suggestions);
-            console.log(data.suggestions);
         });
       }
     }).catch(err => {
-      console.log("Internal server error.", "error");
+      this.props.handleMessage("Internal server error.", "error");
       console.log(err);
     });
 
