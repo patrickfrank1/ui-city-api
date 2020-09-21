@@ -1,7 +1,8 @@
 table {
   width: 60%;
-  margin-top: 100px;
+  padding: 10px 50px 100px 50px;
   overflow-y: scroll;
+  border: 5px solid red;
 }
 
 th, td {

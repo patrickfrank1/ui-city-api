@@ -17,7 +17,7 @@ class App extends React.Component {
   }
   handleMessage = (txt, type = 'error') => {
     this.setState({message: txt, msgType: type});
-    setTimeout(()=>{this.setState({message:''})},3000)
+    setTimeout(()=>{this.setState({message:'', msgType:''})},3000)
   }
   
   setParentState = (prop, token) => {
@@ -37,10 +37,15 @@ class App extends React.Component {
         <div className="searchMenu">
           <SearchBar handleMessage={this.handleMessage} accessToken={this.state.cookie} setData={this.setParentState('results')}/>
         </div>
-        <div className={this.state.msgType}>
+        <div className={this.state.msgType + " infobox"}>
           {this.state.message === null ? '' : this.state.message}
         </div>
         <SearchResults results={this.state.results} />
+        <div className="footer">
+          <span>&copy; 2020, Patrick Frank</span>
+          <span>Github: <a href="https://github.com/patrickfrank1/ui-city-api">https://github.com/patrickfrank1/ui-city-api</a></span>
+          <span>License: MIT</span>
+        </div>
       </div>
     );
   }
